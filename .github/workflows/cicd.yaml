@@ -32,8 +32,7 @@ jobs:
         pip install pytest
 
     - name: Run tests
-      run: |
-        pytest
+      run: pytest
 
   build-and-publish:
     needs: build-and-test
@@ -58,7 +57,7 @@ jobs:
         context: .
         file: ./DockerFile
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/flasktest-app:latest
+        tags: ${{ secrets.DOCKER_USERNAME }}flasktest-app:latest
 
     - name: Image digest
       run: echo ${{ steps.build-and-publish.outputs.digest }}
